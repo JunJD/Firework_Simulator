@@ -844,12 +844,33 @@ const shellTypes = {
 
 const shellNames = Object.keys(shellTypes);
 
-function init() {
-	// Remove loading state
-	document.querySelector(".loading-init").remove();
-	appNodes.stageContainer.classList.remove("remove");
+// 在文件开头附近添加
+const yhBtn = document.querySelector('#yhBtn');
+const canvasContainer = document.querySelector('.canvas-container');
 
-	// Populate dropdowns
+// 在 init() 函数开始处添加
+function init() {
+	// 显示点燃按钮,隐藏加载状态
+	document.querySelector(".loading-init").remove();
+	yhBtn.style.display = 'block'; 
+	appNodes.stageContainer.classList.add('remove');
+
+	// 点燃按钮点击事件
+	yhBtn.addEventListener('click', () => {
+		// 隐藏点燃按钮
+		yhBtn.style.display = 'none';
+		
+		// 显示烟花舞台
+		appNodes.stageContainer.classList.remove('remove');
+		
+		// 开启声音
+		toggleSound(true);
+		
+		// 开始模拟
+		togglePause(false);
+	});
+
+	// 初始化下拉菜单等其他内容
 	function setOptionsForSelect(node, options) {
 		node.innerHTML = options.reduce((acc, opt) => (acc += `<option value="${opt.value}">${opt.label}</option>`), "");
 	}
@@ -881,10 +902,7 @@ function init() {
 		[0.5, 0.62, 0.75, 0.9, 1.0, 1.5, 2.0].map((value) => ({ value: value.toFixed(2), label: `${value * 100}%` }))
 	);
 
-	// Begin simulation
-	togglePause(false);
-
-	// initial render
+	// 初始渲染
 	renderApp(store.state);
 
 	// Apply initial config

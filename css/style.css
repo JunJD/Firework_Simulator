@@ -361,3 +361,22 @@ body {
 	transition-timing-function: ease-out;
 	transition-duration: 0.4s;
 }
+
+#yhBtn {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 999;
+	display: none;
+	cursor: pointer;
+	text-align: center;
+}
+
+#yhBtn p {
+	font-size: 24px;
+	font-weight: bold;
+	color: #fff;
+	text-shadow: 0 0 10px #fff;
+	margin-bottom: 20px;
+}
