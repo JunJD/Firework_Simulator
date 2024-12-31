@@ -868,6 +868,19 @@ function init() {
 		
 		// 开始模拟
 		togglePause(false);
+		
+		// 显示打字文字
+		const contents = document.getElementById('contents');
+		contents.style.display = 'block';
+		
+		// 获取所有文字行
+		const textLines = contents.getElementsByClassName('text-line');
+		
+		// 依次显示每行文字
+		Array.from(textLines).forEach((line, index) => {
+			// 设置每行的延迟时间
+			line.style.animationDelay = `${index * 1}s`; // 每行间隔1秒
+		});
 	});
 
 	// 初始化下拉菜单等其他内容
@@ -1952,7 +1965,7 @@ class Shell {
 		comet.heavy = true;
 		// comet spark trail
 		comet.spinRadius = MyMath.random(0.32, 0.85);
-		comet.sparkFreq = 32 / quality;
+			comet.sparkFreq = 32 / quality;
 		if (isHighQuality) comet.sparkFreq = 8;
 		comet.sparkLife = 320;
 		comet.sparkLifeVariation = 3;
